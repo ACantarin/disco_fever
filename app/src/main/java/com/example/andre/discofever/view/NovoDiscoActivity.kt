@@ -44,15 +44,22 @@ class NovoDiscoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_novo_disco)
 
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        createNotificationChannel(
+            "com.example.andre.discofever.news",
+            "NotifyDemo News",
+            "Example News Channel"
+        )
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        fbAddNovoDisco?.setOnClickListener{
-            fbAddNovoDisco.setOnCreateContextMenuListener { menu, v, menuInfo ->
-                menu.add(Menu.NONE, 1, Menu.NONE, "Foto 1")
-                menu.add(Menu.NONE, 2, Menu.NONE, "Foto 2")
+        imgAddImgAlbum?.setOnClickListener{
+            imgAddImgAlbum.setOnCreateContextMenuListener { menu, v, menuInfo ->
+                menu.add(Menu.NONE, 1, Menu.NONE, "Tirar foto")
+                menu.add(Menu.NONE, 2, Menu.NONE, "Escolher da galeria")
             }
         }
+
+
 
         val intent = intent
         try {
@@ -180,7 +187,7 @@ class NovoDiscoActivity : AppCompatActivity() {
             val replyIntent = Intent()
 
             if(etAlbum.text.isNullOrEmpty()) {
-                Toast.makeText(this, "Insira ao menos o nome", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Insira ao menos o álbum", Toast.LENGTH_SHORT).show()
                 etAlbum.requestFocus()
             }else if((::disco.isInitialized) && (disco.id > 0)){
                 disco.etAlbum = etAlbum.text.toString()
