@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.IO
 import kotlinx.coroutines.experimental.launch
 
-@Database(entities = [Disco::class], version = 3)
+@Database(entities = [Disco::class], version = 4)
 abstract class DiscoDatabase : RoomDatabase(){
 
     abstract fun discoDAO():DiscoDao
